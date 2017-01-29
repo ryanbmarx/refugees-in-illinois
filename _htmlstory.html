@@ -6,9 +6,9 @@
  #
  #}
 {% block content %}
-
 {{ intro|markdown }}
 <h2 class='nations-title'>{{ nations_title }}</h2>
+<p class='nations-subtitle'>{{ nations_subtitle }}</p>
 <dl class='nation-key'>
   <dt>
     <span></span>
@@ -22,6 +22,13 @@
       {% include '_nation-chart.html' %}
     {% endif %}
   {% endfor %}
+</div>
+<div class='credits'>
+  {% if notes %}  
+    {{ notes|markdown }}
+  {% endif %}
+  {{ sources|markdown }}
+  {{ credits|markdown }}
 </div>
 
 {% endblock content %}
