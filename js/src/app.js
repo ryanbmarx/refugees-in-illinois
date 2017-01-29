@@ -1,8 +1,8 @@
 import * as d3 from 'd3';
-import * as _ from 'underscore';
+import {filter, debounce} from 'underscore';
 
 
-(function(window, d3, _){
+(function(window, d3, filter, debounce){
 
 	function formatYear(year){
 		// Format a year into a two-digit format
@@ -16,7 +16,7 @@ import * as _ from 'underscore';
 		const chart = d3.select(`.nation[data-nation="${nation}"] .nation__chart`);
 		
 		// Filter the data to just the row we need.
-		const data = _.filter(window.data, num => {
+		const data = filter(window.data, num => {
 			return num.NATION_ID == nation ? true : false;
 		})[0]
 		
@@ -59,9 +59,6 @@ import * as _ from 'underscore';
 			nations.classList = 'nations nations--4-across';
 
 		} 
-		console.log(width);
-
-
 	}
 
 	window.onload = function(){
@@ -87,7 +84,7 @@ import * as _ from 'underscore';
 		})	
 	}
 
-	let lazyLayout = _.debounce(resizeCharts, 400)
+	let lazyLayout = debounce(resizeCharts, 400)
 	window.onresize = lazyLayout;
 
-})(window, d3, _);
+})(window, d3, filter, debounce);
