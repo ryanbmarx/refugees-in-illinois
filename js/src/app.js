@@ -1,7 +1,8 @@
 import {append, select} from 'd3-selection';
 import {max} from 'd3-array';
 import {scaleLinear} from 'd3-scale';
-import {filter, debounce} from 'underscore';
+import filter from 'lodash.filter';
+import debounce from 'lodash.debounce';
 
 
 (function(window, filter, debounce, max, scaleLinear, append, select){

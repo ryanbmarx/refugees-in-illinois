@@ -9,7 +9,8 @@ module.exports = function(grunt) {
     'd3-scale',
     'd3-array',
     'd3-selection',
-    'underscore'
+    'lodash.debounce',
+    'lodash.filter'
   ];
 
   config.browserify = {
