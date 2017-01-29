@@ -3,7 +3,7 @@ import {max} from 'd3-array';
 import {scaleLinear} from 'd3-scale';
 import filter from 'lodash.filter';
 import debounce from 'lodash.debounce';
-
+import makeMap from './make-refugee-map.js';
 
 (function(window, filter, debounce, max, scaleLinear, append, select){
 
@@ -63,7 +63,10 @@ import debounce from 'lodash.debounce';
 	}
 
 	window.onload = function(){
-		resizeCharts();
+		const mapContainer = document.getElementById('map');
+		makeMap(mapContainer, window.cities);
+
+		
 		// First, find the largest single year and use it to generate a d3 scale;
 		const dataMax = max(window.data, nation => {
 			let tempMax = 0;
@@ -83,6 +86,8 @@ import debounce from 'lodash.debounce';
 			const nation = n.dataset.nation;
 			sizeBars(nation, scale);
 		})	
+		resizeCharts();
+
 	}
 
 	let lazyLayout = debounce(resizeCharts, 400)

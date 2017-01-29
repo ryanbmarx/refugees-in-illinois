@@ -6,6 +6,14 @@
  #
  #}
 {% block content %}
+<figure class='map'>
+  <figcaption>
+    Refugee placement cities in Illinois since 2007
+    <em>Chicago (11,979 refugees) excluded for scale</em>
+  </figcaption>
+  <div id='map'></div>
+</figure>
+
 {{ intro|markdown }}
 <h2 class='nations-title'>{{ nations_title }}</h2>
 <p class='nations-subtitle'>{{ nations_subtitle }}</p>
@@ -53,7 +61,7 @@
 (function(document) {
 
   window.data = {{ nations|tojson }};
-  console.log(window.data);
+  window.cities = {{ cities|tojson }};
 
   var CSS = [
     "//{{ ROOT_URL }}/css/styles.css"

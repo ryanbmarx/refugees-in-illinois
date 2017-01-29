@@ -10,7 +10,8 @@ module.exports = function(grunt) {
     'd3-array',
     'd3-selection',
     'lodash.debounce',
-    'lodash.filter'
+    'lodash.filter',
+    'leaflet'
   ];
 
   config.browserify = {
