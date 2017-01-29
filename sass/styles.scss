@@ -28,10 +28,19 @@ $mobile-max-width: 449px;
 
 
 // ---- IMPORT PROJECT STYLES FROM PARTIAL FILES HERE ---------------------------------------------
-
+@import 'nation';
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
+
+.nations{
+	display:flex;
+	flex-wrap:wrap;
+	justify-content: flex-start;
+
+
+}
 
 .trb_mainContent {
 	p{ width:auto; }
 }
+

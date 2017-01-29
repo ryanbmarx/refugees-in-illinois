@@ -1,0 +1,12 @@
+{% if n.BANNED == 1 %}
+	{% set classes = "nation--banned" %}
+{% else %}
+	{% set classes = "" %}
+{% endif %}
+<div id="nation-{{ n.NATION_ID }}" class='nation {{ classes }}'>
+	<div class='nation__inner'>
+		<h3 class='nation__name'>{{ n.NATION }}</h3>
+		<p class='nation__refugees-total'>{{ n.TOTAL_2007|int_comma }}</p>
+		<div class='nation__chart'></div>
+	</div>
+</div>

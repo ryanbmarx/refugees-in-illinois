@@ -6,8 +6,21 @@
  #
  #}
 {% block content %}
+<dl class='nation-key'>
+  <dt>
+    <span></span>
+  </dt>
+  <dd>Barred from entry by executive order</dd>
 
-	{% include '_refugee-chart.html' %}
+</dl>
+<div class='nations'>
+	{% for nation in nations[1:]|sort(true, attribute="TOTAL_2007") %}
+    {% if nation.BANNED == 1 or nation.TOTAL_2007 > 0 %}
+      {% set n = nation %}
+      {% include '_nation-chart.html' %}
+    {% endif %}
+  {% endfor %}
+</div>
 
 {% endblock content %}
 
@@ -21,6 +34,10 @@
 {# <script src="//{{ ROOT_URL }}/js/app.min.js"></script> #}
 <script>
 (function(document) {
+
+  window.data = {{ nations|tojson }};
+  console.log(window.data);
+
   var CSS = [
     "//{{ ROOT_URL }}/css/styles.css"
   ];

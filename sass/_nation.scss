@@ -1,0 +1,63 @@
+@mixin charts-across($num:3){
+	$width: (100% / $num) - 1%;
+	
+	$margin-bottom: 15px;
+	$margin-right:0;
+
+	@if $num > 1{
+		$margin-space: 100% - ($width * $num);
+		$margin-bottom: $margin-space / ($num - 1);
+		$margin-right: $margin-bottom;
+	}
+
+	width:$width;
+	margin: 0 #{$margin-right} #{$margin-bottom} 0;
+
+}
+
+$banned-color:$trib-blue2;
+
+
+.trb_mainContent .nation{
+	@include charts-across(4);
+	background:$trib-gray4;
+	text-align:center;
+	
+	&__inner{
+		padding: 0 6px;
+	}
+
+	&__name{
+		@include label7();
+		margin: 0 0 7px 0;
+	}
+
+	&__refugees-total{
+		@include sans-serif-text(30px, 1.3e, bold);
+		margin: 0 0 7px 0;
+	}
+
+}
+
+.trb_mainContent .nation--banned{
+	background:tint($banned-color, 80%);
+	.nation__name{
+		color:$banned-color;
+	}
+
+	.nation__refugees-total{
+		color:$banned-color;
+	}
+}
+
+@media all and (max-width: $tablet-max-width){
+	.trb_mainContent .nation{
+		@include charts-across(2);
+	}
+}
+
+@media all and (max-width: $mobile-max-width){
+	.trb_mainContent .nation{
+		@include charts-across(1);
+	}
+}

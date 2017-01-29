@@ -4,6 +4,18 @@
 Tarbell project configuration
 """
 
+from flask import Blueprint, g
+import locale
+
+blueprint = Blueprint('refugees-in-illinois', __name__)
+
+@blueprint.app_template_filter('int_comma')
+def integer_add_commas(num):
+	return locale.format("%d", num, grouping=True)
+
+
+
+
 # Google spreadsheet key
 SPREADSHEET_KEY = "1ABBrNdwPQH4D_vIO9CccHwvwy2PuXzfYFo6fLEcr9TE"
 
