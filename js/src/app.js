@@ -63,8 +63,10 @@ import makeMap from './make-refugee-map.js';
 	}
 
 	window.onload = function(){
-		const mapContainer = document.getElementById('map');
-		makeMap(mapContainer, window.cities);
+		// const illinoisMapContainer = document.getElementById('map--illinois');
+		// const chicagoMapContainer = document.getElementById('map--chicago-area');
+		// console.log(illinoisMapContainer, chicagoMapContainer);
+		// makeMap(illinoisMapContainer, chicagoMapContainer, window.cities);
 
 		
 		// First, find the largest single year and use it to generate a d3 scale;

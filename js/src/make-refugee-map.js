@@ -2,9 +2,10 @@ import * as L from "leaflet";
 import "leaflet-providers";
 import {scaleSqrt} from 'd3-scale';
 import {max} from 'd3-array';
+import {format} from 'd3-format';
 
 
-function makeRefugeeMap(container, cities){
+function makeRefugeeMap(illinoisContainer, chicagoContainer, cities){
 
 	// make scale
     const maxCircleDiameter = 100;
@@ -14,14 +15,8 @@ function makeRefugeeMap(container, cities){
         .range([0, maxCircleDiameter]);
 
 
-
-	console.log('drawing a map in ', container);
-
-	// This css class can serve as a flag for map sizes, if needed. 
-	container.classList.add('go-map')
-
 	// Make a new map
-	let map =  L.map(container,
+	let illinoisMap =  L.map(illinoisContainer,
 		{
 			center: [40.171886, -88.974864],
 			zoom: 6,
@@ -32,8 +27,21 @@ function makeRefugeeMap(container, cities){
 	);
 
 	// This is using an npm plugin. Can be adjusted for many map types.
-	L.tileLayer.provider('Hydda.Full').addTo(map);
+	L.tileLayer.provider('Hydda.Full').addTo(illinoisMap);
 
+	// Make a new map
+	let chicagoMap =  L.map(chicagoContainer,
+		{
+			center: [41.743423, -88.154341],
+			zoom: 9,
+			scrollWheelZoom:false,
+			maxZoom:16
+			// maxBounds:L.latLngBounds(L.latLng(36.590379, -92.133247),L.latLng(42.478624, -87.015605))
+		}
+	);
+
+	// This is using an npm plugin. Can be adjusted for many map types.
+	L.tileLayer.provider('Hydda.Full').addTo(chicagoMap);
 
 	// Define the marker for each project
 	
@@ -41,16 +49,15 @@ function makeRefugeeMap(container, cities){
 		const width = rScale(refugees);
 		return L.divIcon({
 			className:'city-marker',
-			html:`<span class='dot' style='height:${width}px;width:${width}px'></span>`
+			html:`<span class='dot' style='margin:${width/-2}px 0 0 ${width/-2}px;height:${width}px;width:${width}px'></span>`
 		});
 	}
 
 	// Dots on said map. This is the container.
-	let cityMarkers = L.layerGroup({});
+	let tempMakers = L.layerGroup();
 	
 	// This is the array of elements from which the marker data will be plucked.
 	
-console.log(cities);
 	cities.forEach((city, index) => {
 		if (index > 0){
 			// console.log(city, index);
@@ -68,12 +75,16 @@ console.log(cities);
 					icon: getIcon(refugees)
 				}
 			)
-			// cityMarker.bindTooltip(`<strong>${project.dataset.year}</strong>: ${project.dataset.address}`);
-			// projectMarker.id = id;
-			cityMarker.addTo(cityMarkers);
+			cityMarker.bindTooltip(`<strong>${name}</strong>: ${format(',')(refugees)}`);
+			cityMarker.addTo(tempMakers);
 		}
 	});
-	cityMarkers.addTo(map);
+
+	let cityMarkers = tempMakers;
+	cityMarkers.addTo(illinoisMap);
+
+	let detailMarkers = tempMakers;
+	detailMarkers.addTo(chicagoMap);
 }
 
 

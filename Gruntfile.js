@@ -9,6 +9,7 @@ module.exports = function(grunt) {
     'd3-scale',
     'd3-array',
     'd3-selection',
+    'd3-format',
     'lodash.debounce',
     'lodash.filter',
     'leaflet'

@@ -39,6 +39,9 @@ $mobile-max-width: 449px;
 	flex-wrap:wrap;
 	justify-content: flex-start;
 }
+.intro{
+	@include clearfix();
+}
 
 .trb_mainContent {
 	.nations-title{

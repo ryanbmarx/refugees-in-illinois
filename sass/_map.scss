@@ -1,9 +1,16 @@
 @import 'leaflet';
-.go-map{
-	width:100%;
+
+#map--illinois{
 	height:400px;
 	z-index:1000;
 }
+
+#map--chicago-area{
+	height:250px;
+	z-index:1000;
+	margin-bottom:10px
+}
+
 
 .map{
 	@include trib-chart();
@@ -11,8 +18,8 @@
 	width:100%;
 	max-width: 300px;
 	margin:0 0 15px 25px;
-
-
+	
+	width:100%;
 	figcaption{
 		@include label6();
 		margin: 0 0 10px 0;
@@ -31,4 +38,8 @@
 	background:rgba($trib-blue2, .5);
     display: block;
     border-radius: 50%;
+}
+
+.cities-table{
+	@include trib_table(compressed);
 }
