@@ -14,15 +14,13 @@
 {% endif %}
 <div class='nation {{ classes }}' data-nation='{{ n.NATION_ID }}'>
 	<div class='nation__inner'>
-		{{ pie_chart(n.MUSLIM_PER) }}
+		{% if n.MUSLIM_PER %}
+			{# If we have a muslim population percentage, then make a chart. #}
+			{{ pie_chart(n.MUSLIM_PER) }}
+		{% endif %}
 		<h3 class='nation__name'>{{ n.NATION }}</h3>
 		<p class='nation__refugees-total'>{{ n.TOTAL_2007|int_comma }}</p>
-		<div class='nation__chart'>
-{# 			<div class='bar'>
-				<div  style='width:100%'></div>
-			</div>
- #}
-		</div>
+		<div class='nation__chart'></div>
 	</div>
 </div>
 

@@ -9,20 +9,28 @@
 {{ intro|markdown }}
 <h2 class='nations-title'>{{ nations_title }}</h2>
 <p class='nations-subtitle'>{{ nations_subtitle }}</p>
+
+{# <!-- This is the chart key --> #}
 <dl class='nation-key'>
   <dt>
     <span></span>
   </dt>
   <dd>{{ legend_banned }}</dd>
 </dl>
+
+{# <!-- Loop through each nation in the spreadsheet, but only include those who have refugees here. The one exception is Libya, which is included here b/c it is on the banned list --> #}
 <div class='nations'>
 	{% for nation in nations[1:]|sort(true, attribute="TOTAL_2007") %}
     {% if nation.BANNED == 1 or nation.TOTAL_2007 > 0 %}
       {% set n = nation %}
+      {% set i = loop.index %}
       {% include '_nation-chart.html' %}
     {% endif %}
   {% endfor %}
 </div>
+
+{# <!-- The usual closing out stuff. --> #}
+
 <div class='credits'>
   {% if notes %}  
     {{ notes|markdown }}
