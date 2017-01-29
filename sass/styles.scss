@@ -29,6 +29,7 @@ $mobile-max-width: 449px;
 
 // ---- IMPORT PROJECT STYLES FROM PARTIAL FILES HERE ---------------------------------------------
 @import 'nation';
+@import 'turns';
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 
@@ -36,15 +37,21 @@ $mobile-max-width: 449px;
 	display:flex;
 	flex-wrap:wrap;
 	justify-content: flex-start;
-
-
 }
 
 .trb_mainContent {
 	.nations-title{
 		@include label5();
 	}
+	.nations-subtitle{
+		@include sans-serif();
+		font-style:italic;
+	}
+	.credits p{ 
+		@include agate();
+		width:auto; 
+	}
 
-	p{ width:auto; }
+
 }
 

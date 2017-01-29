@@ -1,0 +1,103 @@
+//http://www.smashingmagazine.com/2015/07/designing-simple-pie-charts-with-css/
+
+$pie_highlight_color:$trib-gray2;
+$pie_bg_color:$trib-gray4;
+$pie-dimension: 45px;
+$banned-bg-color: tint($banned-color, 80%);
+
+.pie {
+	width: $pie-dimension; height: $pie-dimension;
+	margin: 0 auto 10px auto;
+	border-radius: 50%;
+	background: $pie_bg_color;
+	background-image: linear-gradient(to right, transparent 50%, $pie_highlight_color 0);
+	overflow:hidden;
+	position:relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	
+	small{
+		@include sans-serif-text(13px, 1.7em, bold);
+		text-align: center;
+		border-radius: 50%;
+		z-index: 1000;
+	    background: rgba(white, .8);
+	    padding: 4px;
+	    width: 50%;
+	    height: 50%;
+	}
+
+	&::before {
+		content: '';
+		display: block;
+		height: 100%;
+		border-radius: 0 100% 100% 0 / 50%;
+		background-color: inherit;
+		transform-origin: left;
+		-webkit-transform-origin: left;
+	    position: absolute;
+	    top: 0;
+	    left: 50%;
+	    width:100%
+	}
+
+	// Special cases for the extremes, either all filled or none filled.
+
+	&.turn100 {
+		background-color:$pie_highlight_color;
+		background-image:none;
+		&::before{
+			display:none;
+		}
+	}
+	&.turn0 {
+		background-color:$pie_bg_color;
+		background-image:none;
+		&::before{
+			display:none;
+		}
+	}
+}
+
+.nation--banned .pie{
+		background-image: linear-gradient(to right, transparent 50%, $banned-color 0);
+		&.turn100 {background-color:$banned-color;}
+		&.turn0 {background-color:$banned-bg-color;}
+}
+
+// Loop through the different degrees, 1 through 99. There is a special case with 51% on up, hence the different loops
+
+@for $i from 1 through 50{
+	
+	$turn:"0.#{$i}turn";
+
+	@if $i < 10{
+		$turn: "0.0#{$i}turn";	
+	}
+
+	.turn#{$i}::before{
+		transform: rotate(#{$turn});
+		-webkit-transform: rotate(#{$turn});		
+	}
+}
+
+@for $i from 51 through 99{
+	$number: $i - 50;
+	$turn:"0.#{$number}turn";
+
+	@if $number < 10{
+		$turn: "0.0#{$number}turn";	
+	}
+	
+	.turn#{$i}::before{
+		background-color: $pie_highlight_color;
+		transform: rotate(#{$turn});
+		-webkit-transform: rotate(#{$turn});
+	}
+
+	.nation--banned .turn#{$i}::before{
+		background-color: $banned-color;
+	}
+}
+
