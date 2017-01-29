@@ -6,7 +6,8 @@ import * as _ from 'underscore';
 
 	function formatYear(year){
 		// Format a year into a two-digit format
-		return `'${year - 2000}`;
+		let formattedYear = year-2000;
+		return formattedYear < 10 ? `'0${formattedYear}` : `'${formattedYear}`;
 	}
 
 	function sizeBars(nation, scale){
@@ -19,18 +20,17 @@ import * as _ from 'underscore';
 			return num.NATION_ID == nation ? true : false;
 		})[0]
 		
-		// console.log(nation, data);
 
 		// Go through each of the years, append a bar and size it's width
 		for (var i = 2007; i <= 2017; i++){
 			 let width = scale(parseInt(data[`CY_${i}`]));
-			 console.log();
+			 
 			 let tempBar = chart.append('div')
 			 	.classed('bar', true)
 			 	.append('div')
 				 	.attr('style', `width:${width}%`);
 
-				if (i % 2 == 0){
+				if (i % 2 != 0){
 					tempBar.append('span')
 						.text(formatYear(i))
 						.classed('bar__year',true);
