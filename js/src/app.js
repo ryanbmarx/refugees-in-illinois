@@ -1,8 +1,10 @@
-import * as d3 from 'd3';
+import {append, select} from 'd3-selection';
+import {max} from 'd3-array';
+import {scaleLinear} from 'd3-scale';
 import {filter, debounce} from 'underscore';
 
 
-(function(window, d3, filter, debounce){
+(function(window, filter, debounce, max, scaleLinear, append, select){
 
 	function formatYear(year){
 		// Format a year into a two-digit format
@@ -13,7 +15,7 @@ import {filter, debounce} from 'underscore';
 	function sizeBars(nation, scale){
 		
 		// Find the specific container we need.
-		const chart = d3.select(`.nation[data-nation="${nation}"] .nation__chart`);
+		const chart = select(`.nation[data-nation="${nation}"] .nation__chart`);
 		
 		// Filter the data to just the row we need.
 		const data = filter(window.data, num => {
@@ -51,10 +53,8 @@ import {filter, debounce} from 'underscore';
 			nations.classList = 'nations nations--1-across';
 		} else if (width < 700) { 
 			nations.classList = 'nations nations--2-across';
-
-		} else if (width < 800) { 
+		} else if (width < 975) { 
 			nations.classList = 'nations nations--3-across';
-
 		} else { 
 			nations.classList = 'nations nations--4-across';
 
@@ -64,7 +64,7 @@ import {filter, debounce} from 'underscore';
 	window.onload = function(){
 		resizeCharts();
 		// First, find the largest single year and use it to generate a d3 scale;
-		const max = d3.max(window.data, nation => {
+		const dataMax = max(window.data, nation => {
 			let tempMax = 0;
 			for (var i = 2007; i <= 2017; i++){
 				if (nation[`CY_${i}`] > tempMax) tempMax = nation[`CY_${i}`];
@@ -72,9 +72,9 @@ import {filter, debounce} from 'underscore';
 			return tempMax;
 		})
 
-		const scale = d3.scaleLinear()
+		const scale = scaleLinear()
 			.range([0,100])
-			.domain([0, max])
+			.domain([0, dataMax])
 
 		const nations = document.querySelectorAll('.nation');
 
@@ -87,4 +87,4 @@ import {filter, debounce} from 'underscore';
 	let lazyLayout = debounce(resizeCharts, 400)
 	window.onresize = lazyLayout;
 
-})(window, d3, filter, debounce);
+})(window, filter, debounce, max, scaleLinear, append, select);

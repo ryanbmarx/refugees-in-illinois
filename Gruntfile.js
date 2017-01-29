@@ -6,7 +6,9 @@ module.exports = function(grunt) {
   // You'll also have to install them using a command similar to:
   //     npm install --save jquery
   var VENDOR_LIBRARIES = [
-    'd3',
+    'd3-scale',
+    'd3-array',
+    'd3-selection',
     'underscore'
   ];
 
