@@ -18,9 +18,9 @@
 		{% include '_explainers.html' %}
 	{% endif %}
 	<div class='nation__inner'>
-		{% if n.MUSLIM_PER %}
+		{% if n.MUSLIM_PEW %}
 			{# If we have a muslim population percentage, then make a chart. #}
-			{{ pie_chart(n.MUSLIM_PER) }}
+			{{ pie_chart(n.MUSLIM_PEW) }}
 		{% endif %}
 		<h3 class='nation__name'>{{ n.NATION }}</h3>
 		<p class='nation__refugees-total'>{{ n.TOTAL_2007|int_comma }}</p>
