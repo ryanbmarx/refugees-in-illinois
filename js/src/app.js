@@ -39,8 +39,33 @@ import * as _ from 'underscore';
 
 	}
 
-	window.onload = function(){
+	function resizeCharts(){
 
+		// Since we're already using javascipt, let's add a little more finesse
+		// to the chart sizing by monitoring the container width.
+
+		const 	nations = document.getElementById('nations'),
+				width = nations.getBoundingClientRect().width;
+
+		if ( width < 475){
+			nations.classList = 'nations nations--1-across';
+		} else if (width < 700) { 
+			nations.classList = 'nations nations--2-across';
+
+		} else if (width < 800) { 
+			nations.classList = 'nations nations--3-across';
+
+		} else { 
+			nations.classList = 'nations nations--4-across';
+
+		} 
+		console.log(width);
+
+
+	}
+
+	window.onload = function(){
+		resizeCharts();
 		// First, find the largest single year and use it to generate a d3 scale;
 		const max = d3.max(window.data, nation => {
 			let tempMax = 0;
@@ -61,4 +86,8 @@ import * as _ from 'underscore';
 			sizeBars(nation, scale);
 		})	
 	}
+
+	let lazyLayout = _.debounce(resizeCharts, 400)
+	window.onresize = lazyLayout;
+
 })(window, d3, _);

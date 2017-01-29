@@ -19,7 +19,7 @@
 </dl>
 
 {# <!-- Loop through each nation in the spreadsheet, but only include those who have refugees here. The one exception is Libya, which is included here b/c it is on the banned list --> #}
-<div class='nations'>
+<div id='nations' class='nations'>
 	{% for nation in nations[1:]|sort(true, attribute="TOTAL_2007") %}
     {% if nation.BANNED == 1 or nation.TOTAL_2007 > 0 %}
       {% set n = nation %}
