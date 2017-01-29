@@ -8,13 +8,12 @@
 {% block content %}
 
 {{ intro|markdown }}
-
+<h2 class='nations-title'>{{ nations_title }}</h2>
 <dl class='nation-key'>
   <dt>
     <span></span>
   </dt>
-  <dd>Barred from entry by executive order</dd>
-
+  <dd>{{ legend_banned }}</dd>
 </dl>
 <div class='nations'>
 	{% for nation in nations[1:]|sort(true, attribute="TOTAL_2007") %}
