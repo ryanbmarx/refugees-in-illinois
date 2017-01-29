@@ -77,6 +77,17 @@ $banned-color:$trib-blue2;
 	}
 }
 
+.nation-key{
+	@include trib-legend();
+
+	span{
+		@include trib_legend__box(0);
+		background:$banned-color;
+	}
+}
+
+
+
 @media all and (max-width: $tablet-max-width){
 	.trb_mainContent .nation{
 		@include charts-across(2);
