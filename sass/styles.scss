@@ -41,6 +41,10 @@ $mobile-max-width: 449px;
 }
 
 .trb_mainContent {
+	.nations-title{
+		@include label5();
+	}
+
 	p{ width:auto; }
 }
 

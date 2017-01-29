@@ -27,7 +27,7 @@ $banned-color:$trib-blue2;
 	}
 
 	&__name{
-		@include label7();
+		@include sans-serif-text(16px, 1.3em, bold);
 		margin: 0 0 0 0;
 	}
 
@@ -47,6 +47,18 @@ $banned-color:$trib-blue2;
 		justify-content: center;
 		margin-bottom:2px;
 		position: relative;
+
+		// Try the easy way first
+		max-width: 84%;
+    	padding-left: 16%;
+		
+		// But this is a more precise method for browsers which support calc(), 
+		// which should be the vast majority of them: http://caniuse.com/#search=calc
+		$label-padding:22px;
+		max-width: calc(100% - #{$label-padding});
+		padding-left: $label-padding;
+
+
 		div{
 			height:12px;
 			background-color:$non-banned-color;
