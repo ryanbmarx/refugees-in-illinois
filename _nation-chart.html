@@ -15,13 +15,7 @@
 <div class='nation {{ classes }}' data-nation='{{ n.NATION_ID }}'>
 	{% if i == 1 %}
 		{# If it is the first time through the loop, append the little explainer note about the pie chart. #}
-		<p class='nation__pie-chart-explainer'>
-			Nation's population that is Muslim*
-		</p>
-		<p class='nation__refugee-number-explainer'>
-			Number of refugees in Illinois
-		</p>
-
+		{% include '_explainers.html' %}
 	{% endif %}
 	<div class='nation__inner'>
 		{% if n.MUSLIM_PER %}

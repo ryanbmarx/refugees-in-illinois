@@ -42,10 +42,12 @@ $mobile-max-width: 449px;
 .trb_mainContent {
 	.nations-title{
 		@include label5();
+		margin: 0 0 5px 0
 	}
-	.nations-subtitle{
+	p.nations-subtitle{
 		@include sans-serif();
 		font-style:italic;
+		margin: 0 0 5px 0
 	}
 	.credits p{ 
 		@include agate();

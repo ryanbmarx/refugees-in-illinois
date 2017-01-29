@@ -41,7 +41,7 @@ $banned-color:$trib-blue2;
 		@include agate();
 		margin:0 0 0 -103px;
 		position:absolute;
-		top:50px;
+		top:35px;
 		left:50%;
 		max-width: 80px;
 		text-align:left;
@@ -50,6 +50,19 @@ $banned-color:$trib-blue2;
 			content:'\00BB';
 		}
 	}
+
+	&__refugee-bar-explainer{
+		@include agate();
+		margin:0 0 0 25px;
+		position:absolute;
+		top:137px;
+		left:50%;
+		text-align:left;
+		&:before{
+			content:'\00AB';
+		}
+	}
+
 	&__inner{
 		padding: 0 6px;
 	}
