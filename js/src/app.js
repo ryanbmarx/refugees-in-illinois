@@ -3,6 +3,12 @@ import * as _ from 'underscore';
 
 
 (function(window, d3, _){
+
+	function formatYear(year){
+		// Format a year into a two-digit format
+		return `'${year - 2000}`;
+	}
+
 	function sizeBars(nation, scale){
 		
 		// Find the specific container we need.
@@ -19,10 +25,16 @@ import * as _ from 'underscore';
 		for (var i = 2007; i <= 2017; i++){
 			 let width = scale(parseInt(data[`CY_${i}`]));
 			 console.log();
-			 chart.append('div')
+			 let tempBar = chart.append('div')
 			 	.classed('bar', true)
 			 	.append('div')
 				 	.attr('style', `width:${width}%`);
+
+				if (i % 2 == 0){
+					tempBar.append('span')
+						.text(formatYear(i))
+						.classed('bar__year',true);
+				}
 		}
 
 	}

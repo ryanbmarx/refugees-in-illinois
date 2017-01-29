@@ -5,9 +5,8 @@
 	$margin-right:0;
 
 	@if $num > 1{
-		$margin-space: 100% - ($width * $num);
-		$margin-bottom: $margin-space / ($num - 1);
-		$margin-right: $margin-bottom;
+		$margin-bottom: 6%;
+		$margin-right: 3%;
 	}
 
 	width:$width;
@@ -47,9 +46,19 @@ $banned-color:$trib-blue2;
 		display: flex;
 		justify-content: center;
 		margin-bottom:2px;
+		position: relative;
 		div{
 			height:12px;
 			background-color:$non-banned-color;
+		}
+
+		&__year{
+			@include sans-serif-text(12px,1em,normal);
+			position:absolute;
+			margin:0;
+			padding:0;
+			top:0;
+			left:0;
 		}
 	}
 
