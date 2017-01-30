@@ -152,6 +152,7 @@ $banned-color:$trib-blue2;
 
 	&.nations--1-across .nation{
 		@include charts-across(1);
+		margin-bottom:45px;
 	}
 	
 }
