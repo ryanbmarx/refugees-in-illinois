@@ -7,32 +7,10 @@
  #}
 {% block content %}
 <section class='intro'>
-<figure class='map'>
-  <figcaption>
-    Top refugee placement cities since 2007
-    {# <em>Chicago (11,979 refugees) excluded for scale</em> #}
-  </figcaption>
-{#   <div id='map--chicago-area'></div>
-  <div id='map--illinois'></div> #}
-  <table class='cities-table'>
-    <thead>
-      <tr>
-        <th>Place</th>
-        <th>Refugees</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for city in cities[1:] if city.REFUGEES > 100 %}
-        <tr>
-          <td>{{ city.CITY }}</td>
-          <td>{{ city.REFUGEES|int_comma }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</figure>
-
-{{ intro|markdown }}
+  {% include '_table.html' %}
+  <div class="intro__text">
+    {{ intro|markdown }}
+  </div>
 </section>
 <h2 class='nations-title'>{{ nations_title }}</h2>
 <p class='nations-subtitle'>{{ nations_subtitle }}</p>

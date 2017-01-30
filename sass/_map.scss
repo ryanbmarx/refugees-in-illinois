@@ -1,15 +1,15 @@
-@import 'leaflet';
+// @import 'leaflet';
 
-#map--illinois{
-	height:400px;
-	z-index:1000;
-}
+// #map--illinois{
+// 	height:400px;
+// 	z-index:1000;
+// }
 
-#map--chicago-area{
-	height:250px;
-	z-index:1000;
-	margin-bottom:10px
-}
+// #map--chicago-area{
+// 	height:250px;
+// 	z-index:1000;
+// 	margin-bottom:10px
+// }
 
 
 .map{
@@ -32,14 +32,15 @@
 	}
 }
 
-.dot{
-	height:10px;
-	width:10px;
-	background:rgba($trib-blue2, .5);
-    display: block;
-    border-radius: 50%;
-}
+// .dot{
+// 	height:10px;
+// 	width:10px;
+// 	background:rgba($trib-blue2, .5);
+//     display: block;
+//     border-radius: 50%;
+// }
 
 .cities-table{
 	@include trib_table(compressed);
+	margin:0;
 }

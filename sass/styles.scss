@@ -41,9 +41,14 @@ $mobile-max-width: 449px;
 }
 .intro{
 	@include clearfix();
+	margin: 0 0 25px 0;
 }
 
 .trb_mainContent {
+	p{
+		margin: 0 0 18px 0;
+	}
+
 	.nations-title{
 		@include label5();
 		margin: 0 0 5px 0
@@ -61,3 +66,22 @@ $mobile-max-width: 449px;
 
 }
 
+@media all and (max-width:600px){
+.intro{
+	    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+}
+
+.map{
+	float:none;
+	width:100%;
+	max-width: none;
+	margin:0;
+
+	figcaption{
+		@include label5();
+	}
+}
+}

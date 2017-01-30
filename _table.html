@@ -1,0 +1,24 @@
+<figure class='map'>
+  <figcaption>
+    {{ table_headline }}
+    <em>{{ table_subheadline }}</em>
+  </figcaption>
+{#   <div id='map--chicago-area'></div>
+  <div id='map--illinois'></div> #}
+  <table class='cities-table'>
+    <thead>
+      <tr>
+        <th>Place</th>
+        <th>Refugees</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for city in cities[1:] if city.REFUGEES > 100 %}
+        <tr>
+          <td>{{ city.CITY }}</td>
+          <td>{{ city.REFUGEES|int_comma }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</figure>
