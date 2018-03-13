@@ -19,10 +19,12 @@ $banned-color:$trib-blue2;
 
 
 .trb_mainContent .nation{
-	@include charts-across(1);
+	// @include charts-across(1);
 	text-align:center;
 	position:relative;
-	
+	flex: 1 1 200px;
+	margin:0 30px 60px 0;
+
 	&__pie-chart-explainer{
 		@include agate();
 		margin:0 0 0 35px;
@@ -136,26 +138,26 @@ $banned-color:$trib-blue2;
 }
 
 // These classes are used by the JS to toggle between different chart orientations.
-.trb_mainContent .nations{
-	&.nations--4-across .nation{
-		@include charts-across(4);
-	}
+// .trb_mainContent .nations{
+// 	&.nations--4-across .nation{
+// 		@include charts-across(4);
+// 	}
 
-	&.nations--3-across .nation{
-		@include charts-across(3);
-	}
+// 	&.nations--3-across .nation{
+// 		@include charts-across(3);
+// 	}
 
 
-	&.nations--2-across .nation{
-		@include charts-across(2);
-	}
+// 	&.nations--2-across .nation{
+// 		@include charts-across(2);
+// 	}
 
-	&.nations--1-across .nation{
-		@include charts-across(1);
-		margin-bottom:45px;
-	}
+// 	&.nations--1-across .nation{
+// 		@include charts-across(1);
+// 		margin-bottom:45px;
+// 	}
 	
-}
+// }
 
 .nation-key{
 	@include trib-legend();
